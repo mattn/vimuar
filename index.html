@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vimur</title>
+<script type="text/javascript">
+window.addEventListener('load', function() {
+  document.querySelector('#pattern').addEventListener('input', function(e) {
+    var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/", true);
+      xhr.onload = function(result) {
+        if (xhr.status == 200) {
+          document.querySelector('#result').textContent = xhr.responseText;
+        }
+      };
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.send([
+        'text=' + encodeURIComponent(document.querySelector('#text').value),
+        'pattern=' + encodeURIComponent(document.querySelector('#pattern').value),
+      ].join('&'));
+      e.preventDefault();
+  }, false);
+}, false);
+</script>
+</head>
+<body>
+<input id="pattern" name="pattern" /><br />
+<textarea id="text" name="text" cols=60 rows=20>test
+data</textarea>
+<div id="result"></div>
+</body>
+</html>
