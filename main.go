@@ -19,7 +19,7 @@ func main() {
 		}
 		f.Close()
 		text, pattern := c.FormValue("text"), c.FormValue("pattern")
-		cmd := exec.Command("vim", "-u", "NONE", "-N", "--clean", "--cmd", "so vimuar.vim")
+		cmd := exec.Command("vim", "-Z", "-u", "NONE", "-N", "--clean", "--cmd", "so vimuar.vim")
 		cmd.Env = append(os.Environ(),
 			"VIMUAR_FILE="+f.Name(),
 			"VIMUAR_TEXT="+text,
